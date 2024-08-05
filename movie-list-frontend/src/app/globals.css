@@ -31,3 +31,52 @@ body {
     text-wrap: balance;
   }
 }
+
+
+.svg-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 150px; 
+  overflow: hidden;
+} 
+
+.svg-container2 {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: 150px; 
+  overflow: hidden;
+  background-color: #083344;
+}
+
+.svg-container svg {
+  width: 100%;
+  height: 100%;
+}
+.svg-container2 svg {
+  width: 100%;
+  height: 100%;
+}
+
+
+.loader {
+  border: 8px solid #3498db;
+  border-radius: 50%;
+  border-top: 8px solid #224957;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: spin 2s linear infinite; 
+  animation: spin 2s linear infinite;
+}
+
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

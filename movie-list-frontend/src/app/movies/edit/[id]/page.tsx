@@ -5,6 +5,8 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { MdOutlineFileDownload } from 'react-icons/md';
+import withAuth from '@/components/withAuth/withAuth';
+
 
 const EditMovie = ({ params }: { params: { id: string } }) => {
     const [loading, setLoading] = useState(false);
@@ -170,4 +172,4 @@ const EditMovie = ({ params }: { params: { id: string } }) => {
     );
 };
 
-export default EditMovie
+export default withAuth(EditMovie)

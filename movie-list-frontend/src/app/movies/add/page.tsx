@@ -4,6 +4,8 @@ import { MdOutlineFileDownload } from 'react-icons/md';
 import Footer from '@/components/Footer/Footer';
 import toast from 'react-hot-toast';
 import Link from 'next/link';
+import withAuth from '@/components/withAuth/withAuth';
+
 
 const CreateMovie = () => {
     const [title, setTitle] = useState('');
@@ -113,4 +115,4 @@ const CreateMovie = () => {
     );
 };
 
-export default CreateMovie
+export default withAuth(CreateMovie)

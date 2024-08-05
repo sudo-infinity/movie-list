@@ -2,12 +2,12 @@
 "use client"
 import Footer from '@/components/Footer/Footer';
 import Loader from '@/components/Loader/Loader';
-import withAuth from '@/components/withAuth/withAuth';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { IoMdAddCircleOutline } from 'react-icons/io';
 import { MdAddBox, MdLogout } from 'react-icons/md';
+import withAuth from '@/components/withAuth/withAuth';
 
 type Movie = {
     id: number;

@@ -9,7 +9,7 @@ import Link from 'next/link';
 const CreateMovie = () => {
     const [title, setTitle] = useState('');
     const [year, setYear] = useState('');
-    const [file, setFile] = useState(null);
+    const [file, setFile] = useState<File | null>(null); // Explicitly define the type
 
     const handleFileChange = (e: any) => {
         setFile(e.target.files[0]);
@@ -21,7 +21,11 @@ const CreateMovie = () => {
         const formData = new FormData();
         formData.append('title', title);
         formData.append('publishingYear', year); // Convert to integer
-        formData.append('file', file);
+        // Ensure file is not null before appending
+        if (file !== null) {
+            formData.append('file', file);
+        }
+
 
         try {
             const token = localStorage.getItem('access_token');

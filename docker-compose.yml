@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: ./movie-list-frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./movie-list-backend
+      dockerfile: Dockerfile
+    container_name: backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: "postgresql://user:password@postgres:5432/moviesdb"
+    command: sh -c "npx prisma generate && npx prisma migrate dev && npm run start:dev"
+
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: moviesdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:

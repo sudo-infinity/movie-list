@@ -13,7 +13,7 @@ const EditMovie = ({ params }: { params: { id: string } }) => {
 
     const [title, setTitle] = useState('');
     const [year, setYear] = useState('');
-    const [file, setFile] = useState(null);
+    const [file, setFile] = useState<File | null>(null); // Explicitly define the type
 
     const handleFileChange = (e: any) => {
         setFile(e.target.files[0]);
@@ -62,7 +62,11 @@ const EditMovie = ({ params }: { params: { id: string } }) => {
         const formData = new FormData();
         formData.append('title', title);
         formData.append('publishingYear', year); // Convert to integer
-        formData.append('file', file);
+        // Ensure file is not null before appending
+        if (file !== null) {
+            formData.append('file', file);
+        }
+
 
         try {
             const token = localStorage.getItem('access_token');
@@ -107,7 +111,7 @@ const EditMovie = ({ params }: { params: { id: string } }) => {
                                     <label className="border-dashed rounded-2xl border-2 border-white w-64 md:w-2/3 h-64 md:h-96 flex flex-col items-center justify-center bg-cyan-900 cursor-pointer">
                                         <MdOutlineFileDownload className="text-2xl text-white" />
                                         <div className="mt-2 text-white w-full px-4 text-center overflow-hidden whitespace-nowrap text-ellipsis">
-                                            {file ? file.name : 'Drop an image here'}
+                                            {file && file.name ? file.name : 'Drop an image here'}
                                         </div>
                                         <input
                                             type="file"
